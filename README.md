@@ -19,3 +19,5 @@ A semana foi ministrada pelo Mestre [Diego Fernandes](https://github.com/diego3g
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+[![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Dev-Radar&uri=https%3A%2F%2Fraw.githubusercontent.com%2FAlfredosavi%2FDev-Radar%2Fmaster%2Fexport_insomnia.json)
