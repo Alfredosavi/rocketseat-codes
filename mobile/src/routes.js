@@ -6,7 +6,6 @@ const AppStack = createStackNavigator();
 
 import Incidents from "./pages/Incidents";
 import Detail from "./pages/Detail";
-import App from "../App";
 
 function Routes() {
   return (

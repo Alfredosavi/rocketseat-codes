@@ -9,10 +9,10 @@ import logoImg from "../../assets/logo.png";
 import styles from "./styles";
 
 function Incidents() {
-  const [incidents, setIncidents] = useEffect([]);
-  const [total, setTotal] = useEffect(0);
-  const [page, setPage] = useEffect(1);
-  const [loading, setLoading] = useEffect(false);
+  const [incidents, setIncidents] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const navigation = useNavigation();
 
