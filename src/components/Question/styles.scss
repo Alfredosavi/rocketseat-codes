@@ -66,20 +66,32 @@
         color: #737380;
         gap: 8px;
 
+        &.liked {
+          svg {
+            fill: lighten($color: blue, $amount: 20%);
+
+            path {
+              stroke: #FFF;
+            }
+          }
+          
+          &:hover{
+            filter: none;
+          }
+        }
 
         &.like {
           color: #835AFD;
-  
-          svg path {
-            stroke: #835AFD;
-          }
+        }
+
+        svg path {
+          stroke: #835AFD;
+        }
+
+        &:hover{
+          filter: brightness(0.5);
         }
       }
-
-      &:hover {
-        filter: brightness(0.5);
-      }
-
     }
   }
 }

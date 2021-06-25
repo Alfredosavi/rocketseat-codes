@@ -1,38 +1,53 @@
 import { FormEvent, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 
 import { database } from "../../services/firebase";
+
+import { useRoom } from "../../hooks/useRoom";
 import { useAuth } from "../../hooks/useAuth";
 
 import { Button } from "../../components/Button";
 import { RoomCode } from "../../components/RoomCode";
 import { Question } from "../../components/Question";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import logoImg from "../../assets/images/logo.svg";
 import "./styles.scss";
-import { useRoom } from "../../hooks/useRoom";
 
 type RoomParams = {
   id: string;
 };
 
 export function Room() {
-  const { user } = useAuth();
+  const { user, signInWithGoogle } = useAuth();
   const params = useParams<RoomParams>();
   const roomId = params.id;
 
   const [newQuestion, setNewQuestion] = useState("");
   const { questions, title } = useRoom(roomId);
 
+  const history = useHistory();
+
+  async function handleLogin() {
+    if (!user) {
+      await signInWithGoogle();
+    }
+
+    history.push(`/rooms/${params.id}`);
+  }
+
   async function handleCreateNewQuestion(event: FormEvent) {
     event.preventDefault();
 
     if (newQuestion.trim() === "") {
+      toast.warning("O campo está vazio!");
       return;
     }
 
     if (!user) {
-      throw new Error("You must be logged in");
+      throw new Error("You must be logged in.");
     }
 
     const question = {
@@ -46,6 +61,8 @@ export function Room() {
     };
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
+
+    toast.success("Pergunta criada com sucesso!");
 
     setNewQuestion("");
   }
@@ -67,9 +84,13 @@ export function Room() {
 
   return (
     <div id="page-room">
+      <ToastContainer />
       <header>
         <div className="content">
-          <img src={logoImg} alt="letmeask" />
+          <Link to="/">
+            <img src={logoImg} alt="letmeask" />
+          </Link>
+
           <RoomCode code={roomId} />
         </div>
       </header>
@@ -90,7 +111,11 @@ export function Room() {
           <div className="form-footer">
             {!user ? (
               <span>
-                Para enviar uma pergunta, <button>faça seu login</button>.
+                Para enviar uma pergunta,{" "}
+                <button type="button" onClick={handleLogin}>
+                  faça seu login
+                </button>
+                .
               </span>
             ) : (
               <div className="user-info">

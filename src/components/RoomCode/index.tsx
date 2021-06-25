@@ -1,5 +1,8 @@
 import copyImg from "../../assets/images/copy.svg";
 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./styles.scss";
 
 type RoomCodeProps = {
@@ -9,6 +12,9 @@ type RoomCodeProps = {
 export function RoomCode(props: RoomCodeProps) {
   function copyRoomCodeToClipboard() {
     navigator.clipboard.writeText(props.code);
+    toast.success("Código copiado!", {
+      autoClose: 2000,
+    });
   }
 
   return (

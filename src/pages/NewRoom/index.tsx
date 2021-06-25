@@ -9,17 +9,25 @@ import { Button } from "../../components/Button";
 import illustrationImg from "../../assets/images/illustration.svg";
 import logoImg from "../../assets/images/logo.svg";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "../../styles/auth.scss";
 
 export function NewRoom() {
+  const { signInWithGoogle, user } = useAuth();
   const [newRoom, setNewRoom] = useState("");
-  const { user } = useAuth();
+  const [disable, setDisable] = useState(false);
+
   const history = useHistory();
 
   async function handleCreateRoom(event: FormEvent) {
     event.preventDefault();
+    setDisable(true);
 
     if (newRoom.trim() === "") {
+      setDisable(false);
+      toast.warning("O campo está vazio!");
       return;
     }
 
@@ -30,11 +38,22 @@ export function NewRoom() {
       authorId: user?.id,
     });
 
-    history.push(`/rooms/${firebaseRoom.key}`);
+    toast.success("Sala criada com sucesso!", {
+      autoClose: 2500,
+    });
+
+    setTimeout(() => {
+      history.push(`/rooms/${firebaseRoom.key}`);
+    }, 2600);
+  }
+
+  async function handleChangeAccount() {
+    await signInWithGoogle();
   }
 
   return (
     <div id="page-auth">
+      <ToastContainer />
       <aside>
         <img src={illustrationImg} alt="Ilustração" />
         <strong>Crie salas de Q&amp;A ao-vivo</strong>
@@ -52,10 +71,17 @@ export function NewRoom() {
               value={newRoom}
             />
 
-            <Button type="submit">Criar sala</Button>
+            <Button type="submit" disabled={disable}>
+              Criar sala
+            </Button>
           </form>
           <p>
             Quer entrar em uma sala existente? <Link to="/">Clique aqui</Link>
+          </p>
+          <p className="account">
+            Você está logado com: <strong>{`${user?.name}. `}</strong>
+            <span onClick={handleChangeAccount}>Clique aqui</span> se deseja
+            trocar de conta.
           </p>
         </div>
       </main>

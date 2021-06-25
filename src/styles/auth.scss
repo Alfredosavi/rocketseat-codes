@@ -86,9 +86,16 @@
       margin-top: 16px;
 
       a {
-        color: #e559f9;
+        color: #E559F9;
       }
     }
+
+    .account span {
+      color: #E559F9;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
   }
 
   .create-room {
