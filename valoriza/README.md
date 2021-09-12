@@ -179,7 +179,7 @@ O arquivo ```INSOMNIA``` contendo todas as rotas foi disponibilizado e pode ser 
 [![Run in Insomnia}](https://insomnia.rest/images/run.svg)](https://insomnia.rest/run/?label=Valoriza&uri=https%3A%2F%2Fgithub.com%2FAlfredosavi%2Fvaloriza%2Fblob%2Fmain%2FInsomnia_2021-09-12.json)
   
  
-## Diagrama ER
+## :book: Diagrama ER
 
 ![Diagrama_ER](https://i.imgur.com/UgeKvBQ.png)
 
