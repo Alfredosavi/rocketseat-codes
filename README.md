@@ -3,17 +3,18 @@ Repositório contendo todos os códigos desenvolvidos durante os cursos da rocke
 
 ## :tada: Projetos
   1. [__be-the-hero__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/be-the-hero):
-  2. [__darkLight-Theme__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/darkLight-Theme):
+  2. [__darkLight-Theme__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/darkLight-Theme): Projeto para adicionar em uma aplicação a opção de configurar um tema claro e escuro com um Theme Switcher;
   3. [__dev-radar__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/dev-radar):
   4. [__gobarber-ts__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/gobarber-ts):
   5. [__gobarber__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/gobarber):
   6. [__let-me-ask__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/let-me-ask):
-  7. [__maratona-dev__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/maratona-dev):
+  7. [__maratona-dev__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/maratona-dev): O projeto é um sistema de cadastro para doadores de sangue, chamado DOE;
   8. [__node-js__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/node-js):
   9. [__valoriza__](https://github.com/Alfredosavi/rocketseat-codes/tree/main/valoriza): É uma plataforma (API) para promover o reconhecimento entre companheiros de equipe.
   
 
 ## :eyes: Observações
+  Cada projeto possui um readme separado, então para mais informações sobre os projetos, acesse-o e leia seu ```readme```.
 
 ## ⚡️ Como contribuir
   - Faça um fork desse repositório;
