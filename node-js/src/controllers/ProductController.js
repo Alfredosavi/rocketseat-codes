@@ -1,33 +1,46 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const Product = mongoose.model('Product');
+const Product = mongoose.model("Product");
 
 module.exports = {
-    async index(req, res) {
-        const { page = 1 } = req.query;
-        const products = await Product.paginate({}, {page, limit: 10});
+  async index(req, res) {
+    const { page = 1 } = req.query;
+    const products = await Product.paginate({}, { page, limit: 10 }).catch(
+      (err) => {
+        console.log(err);
+      }
+    );
 
-        return res.json(products);
-    },
+    return res.json(products);
+  },
 
-    async show(req, res) {
-        const product = await Product.findById(req.params.id);
+  async show(req, res) {
+    const product = await Product.findById(req.params.id);
 
-        return res.json(product);
-    },
+    return res.json(product);
+  },
 
-    async store(req, res) {
-        const product = await Product.create(req.body);
-        return res.json(product);
-    },
+  async store(req, res) {
+    const product = await Product.create(req.body);
+    return res.json(product);
+  },
 
-    async update(req, res) {
-        const product = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
-        return res.json(product);
-    },
+  async update(req, res) {
+    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    return res.json(product);
+  },
 
-    async destroy(req, res) {
-        await Product.findByIdAndRemove(req.params.id);
-        return res.send();
+  async destroy(req, res) {
+    const _id = req.params.id;
+    const product = await Product.findById(_id);
+
+    if (!product) {
+      return res.status(400).json({ error: "Product not found" });
     }
+
+    await Product.remove({ _id });
+    return res.status(200).json({ message: "Product deleted" });
+  },
 };

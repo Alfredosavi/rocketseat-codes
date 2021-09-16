@@ -1,21 +1,24 @@
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const requireDir = require('require-dir');
+require("dotenv").config();
+
+const express = require("express");
+const cors = require("cors");
+const requireDir = require("require-dir");
+
+const connectToDatabase = require("./src/configs/database");
+
+// Iniciando BD
+connectToDatabase();
 
 // iniciando o APP
 const app = express();
 app.use(express.json()); // permitir que envie dados em formato JSON
 app.use(cors()); // permitir acesso a todos os dominios
 
-// Iniciando o DB ... DB do docker :D
-mongoose.connect( 
-    "mongodb://localhost:27017/nodeapi",
-    { useUnifiedTopology: true, useNewUrlParser: true },
-);
-requireDir('./src/models');
+requireDir("./src/models");
 
 // Rotas
-app.use('/api', require("./src/routes"));
+app.use("/api", require("./src/routes"));
 
-app.listen(3001);
+app.listen(process.env.PORT, () => {
+  console.log(`[INFO] Server is running on port ${process.env.PORT}`);
+});
